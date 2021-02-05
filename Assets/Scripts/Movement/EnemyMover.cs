@@ -8,8 +8,8 @@ namespace Watchtower.Movement
     {
         [SerializeField]
         private List<Waypoint> _path = new List<Waypoint>();
-        [SerializeField]
-        private float _timeBetweenMoves = 1f;
+        [SerializeField] [Range(0f, 5f)]
+        private float _speed = 1f;
 
         // Start is called before the first frame update
         void Start()
@@ -21,8 +21,18 @@ namespace Watchtower.Movement
         {
             foreach (Waypoint waypoint in _path)
             {
-                transform.position = waypoint.transform.position;
-                yield return new WaitForSeconds(_timeBetweenMoves);
+                Vector3 startPosition = transform.position;
+                Vector3 endPosition = waypoint.transform.position;
+                float distanceTravelled = 0f;
+
+                transform.LookAt(endPosition);
+
+                while (distanceTravelled <= 1.0f)
+                {
+                    distanceTravelled += Time.deltaTime * _speed;
+                    transform.position = Vector3.Lerp(startPosition, endPosition, distanceTravelled);
+                    yield return new WaitForEndOfFrame();
+                }              
             }
         }
     }

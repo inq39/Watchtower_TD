@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 2121816978678912390}
   - component: {fileID: 6256814345981945533}
   - component: {fileID: 9207606095360479384}
+  - component: {fileID: 2695612808984623606}
   m_Layer: 0
   m_Name: Tile_base
   m_TagString: Untagged
@@ -226,3 +227,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76e8a9c2e4bc9bb42badcc22db60e375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _towerPrefab: {fileID: 3219458064393657486, guid: 8a965e088bae16643aab3d07ccfd5e2e, type: 3}
+  _isPlaceable: 1
+--- !u!65 &2695612808984623606
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121816978678912391}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 1, z: 10}
+  m_Center: {x: 0, y: -0.5, z: 0}
