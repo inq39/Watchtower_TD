@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor.Experimental.SceneManagement;
 
 namespace Watchtower.Core
 {
@@ -21,9 +22,11 @@ namespace Watchtower.Core
         // Update is called once per frame
         void Update()
         {
-            if (!Application.isPlaying)
-            UpdateCoordinateText();
-            UpdateGameObjectText();
+            if (!Application.isPlaying && PrefabStageUtility.GetPrefabStage(gameObject) == null)
+            {
+                UpdateCoordinateText();
+                UpdateGameObjectText();
+            }       
         }
 
         private void UpdateCoordinateText()
