@@ -215,6 +215,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a1096e825a1c8b469ada60e8b1ef7b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isPlacableColor: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 1}
+  _isNotPlacableColor: {r: 1, g: 0.45336083, b: 0, a: 1}
 --- !u!114 &9207606095360479384
 MonoBehaviour:
   m_ObjectHideFlags: 0
