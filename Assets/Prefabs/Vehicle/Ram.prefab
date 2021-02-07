@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 7502624646399247007}
   - component: {fileID: 5521428228227784482}
   - component: {fileID: 3221545786726018879}
+  - component: {fileID: 9169509755351797784}
   m_Layer: 0
   m_Name: Ram
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,15 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f43d18dc89f3e294286a48f71dc2a6be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _path:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _speed: 0.2
+  _speed: 0.5
 --- !u!114 &3221545786726018879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +74,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHitPoints: 50
+--- !u!114 &9169509755351797784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4125563022829902999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f745eb816659f94495e3dc00192438f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4957682906980951118
 GameObject:
   m_ObjectHideFlags: 0

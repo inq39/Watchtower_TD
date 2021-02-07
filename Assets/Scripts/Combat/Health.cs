@@ -9,9 +9,10 @@ namespace Watchtower.Combat
     {
         [SerializeField]
         private int _maxHitPoints;
+        [SerializeField]
         private int _currentHitPoints;
         // Start is called before the first frame update
-        void Start()
+        void OnEnable()
         {
             _currentHitPoints = _maxHitPoints;
         }
@@ -22,8 +23,8 @@ namespace Watchtower.Combat
             _currentHitPoints -= 10;
             if (_currentHitPoints <= 0)
             {
-                Destroy(gameObject);
-                Destroy(other);
+                gameObject.SetActive(false);
+                
             }
         }
     }

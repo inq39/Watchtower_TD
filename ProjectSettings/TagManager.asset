@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Path
+  - Object_Pool
   layers:
   - Default
   - TransparentFX
