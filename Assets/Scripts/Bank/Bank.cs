@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Watchtower.UI;
 
 namespace Watchtower.BankSystem
 {
@@ -14,10 +15,19 @@ namespace Watchtower.BankSystem
         private int _currentBalance;
         public int CurrentBalance { get { return _currentBalance; } }
 
+        [SerializeField]
+        private UpdateGoldText _updateGoldText;
+
         private void Awake()
         {
             _currentBalance = _startBalance;
             _scene = SceneManager.GetActiveScene();
+
+            if (_updateGoldText == null)
+            {
+                Debug.LogError("GoldText is NULL.");
+            }
+            _updateGoldText.UpdateText(_currentBalance);
         }
 
         public void WithDraw(int amount)
@@ -25,18 +35,19 @@ namespace Watchtower.BankSystem
             if (amount <= _currentBalance)
             {
                 _currentBalance -= Mathf.Abs(amount);
+                _updateGoldText.UpdateText(_currentBalance);
             }
             else
             {
                 Debug.Log("Game Over");
-                ReloadScene();
-                
+                ReloadScene();       
             }
         }
 
         public void Deposit(int amount)
         {
             _currentBalance += Mathf.Abs(amount);
+            _updateGoldText.UpdateText(_currentBalance);
         }
 
         private void ReloadScene()
