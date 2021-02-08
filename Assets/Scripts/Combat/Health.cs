@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Watchtower.Core;
 
 namespace Watchtower.Combat
 {
@@ -11,7 +12,18 @@ namespace Watchtower.Combat
         private int _maxHitPoints;
         [SerializeField]
         private int _currentHitPoints;
-        // Start is called before the first frame update
+
+        private Enemy _enemy;
+
+        private void Start()
+        {
+            _enemy = GetComponent<Enemy>();
+            if (_enemy == null)
+            {
+                Debug.LogError("Enemy is NULL.");
+            }
+        }
+
         void OnEnable()
         {
             _currentHitPoints = _maxHitPoints;
@@ -23,8 +35,8 @@ namespace Watchtower.Combat
             _currentHitPoints -= 10;
             if (_currentHitPoints <= 0)
             {
+                _enemy.RewardGold();
                 gameObject.SetActive(false);
-                
             }
         }
     }

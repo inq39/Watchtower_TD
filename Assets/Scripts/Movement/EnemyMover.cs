@@ -12,8 +12,17 @@ namespace Watchtower.Movement
         private List<Waypoint> _path = new List<Waypoint>();
         [SerializeField] [Range(0f, 5f)]
         private float _speed = 1f;
+        private Enemy _enemy;
 
-        // Start is called before the first frame update
+        private void Start()
+        {
+            _enemy = GetComponent<Enemy>();
+            if (_enemy == null)
+            {
+                Debug.LogError("Enemy is NULL.");
+            }
+        }
+
         void OnEnable()
         {
             FindPath();
@@ -55,6 +64,7 @@ namespace Watchtower.Movement
                 }
                 
             }
+            _enemy.PenaltyGold();
             gameObject.SetActive(false);
         }
     }

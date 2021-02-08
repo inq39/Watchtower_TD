@@ -7,20 +7,25 @@ namespace Watchtower.Core
     public class Waypoint : MonoBehaviour
     {
         [SerializeField]
-        private GameObject _towerPrefab;
+        private Tower _towerPrefab;
         
         [SerializeField]
         private bool _isPlaceable;
         public bool IsPlaceable { get { return _isPlaceable; } }
+
+        private bool _towerIsPlaced = false;
+
+
+
         private void OnMouseDown()
         {
             if (_isPlaceable)
-            {             
-                Instantiate(_towerPrefab, transform.position, Quaternion.identity);
-                _isPlaceable = false;
+            {
+                _towerIsPlaced = _towerPrefab.CreateTower(_towerPrefab, transform.position);
+                _isPlaceable = !_towerIsPlaced;
             }
-                
 
+            
         }
     }
 }
