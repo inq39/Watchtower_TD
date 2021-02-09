@@ -6,6 +6,7 @@ using Watchtower.Core;
 
 namespace Watchtower.Movement
 {
+    [RequireComponent(typeof(Enemy))]
     public class EnemyMover : MonoBehaviour
     {
        
@@ -38,11 +39,14 @@ namespace Watchtower.Movement
         private void FindPath()
         {
             _path.Clear();
-            GameObject[] waypoints = GameObject.FindGameObjectsWithTag("Path");
+            GameObject parent = GameObject.FindGameObjectWithTag("Path");
 
-            foreach (var waypoint in waypoints)
+            foreach (Transform child in parent.transform)
             {
-                _path.Add(waypoint.GetComponent<Waypoint>());
+                Waypoint waypoint = child.GetComponent<Waypoint>();
+
+                if (waypoint != null)
+                _path.Add(waypoint);
             }
         }
 
@@ -62,8 +66,13 @@ namespace Watchtower.Movement
                     transform.position = Vector3.Lerp(startPosition, endPosition, distanceTravelled);
                     yield return new WaitForEndOfFrame();
                 }
-                
+
             }
+            FinishPath();
+        }
+
+        private void FinishPath()
+        {
             _enemy.PenaltyGold();
             gameObject.SetActive(false);
         }

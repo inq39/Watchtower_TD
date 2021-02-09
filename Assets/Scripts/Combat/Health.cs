@@ -6,11 +6,12 @@ using Watchtower.Core;
 
 namespace Watchtower.Combat
 {
+    [RequireComponent(typeof(Enemy))]
     public class Health : MonoBehaviour
     {
         [SerializeField]
         private int _maxHitPoints;
-        [SerializeField]
+        
         private int _currentHitPoints;
 
         private Enemy _enemy;
@@ -18,10 +19,6 @@ namespace Watchtower.Combat
         private void Start()
         {
             _enemy = GetComponent<Enemy>();
-            if (_enemy == null)
-            {
-                Debug.LogError("Enemy is NULL.");
-            }
         }
 
         void OnEnable()

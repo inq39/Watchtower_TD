@@ -8,9 +8,9 @@ namespace Watchtower.Core
     {
         [SerializeField]
         private GameObject _enemyPrefab;
-        [SerializeField]
+        [SerializeField] [Range (0.1f, 10f)]
         private float _spawnTimer;
-        [SerializeField]
+        [SerializeField] [Range (0, 25)]
         private int _poolSize;
 
         private GameObject[] _enemyPool;

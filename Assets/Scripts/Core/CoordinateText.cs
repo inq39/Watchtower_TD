@@ -19,7 +19,8 @@ namespace Watchtower.Core
         private Color _isPlacableColor;
         [SerializeField]
         private Color _isNotPlacableColor;
-        // Start is called before the first frame update
+
+       
         void Awake()
         {
             _coordinateLabel = GetComponentInChildren<TextMeshPro>();
@@ -27,7 +28,7 @@ namespace Watchtower.Core
             _waypoint = GetComponentInParent<Waypoint>();
         }
 
-        // Update is called once per frame
+     
         void Update()
         {
             if (!Application.isPlaying && PrefabStageUtility.GetPrefabStage(gameObject) == null)
@@ -53,6 +54,7 @@ namespace Watchtower.Core
                 
         }
 
+        //Script should be paste in an "Editor"-Folder for Building Process because of EditorSnapSetting
         private void UpdateCoordinateText()
         {
             _coordinate.x = Mathf.RoundToInt(transform.position.x / UnityEditor.EditorSnapSettings.move.x);
