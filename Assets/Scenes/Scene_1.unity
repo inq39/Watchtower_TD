@@ -1892,7 +1892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf852f11eb778b348b4cd65649da5067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridSize: {x: 0, y: 0}
+  _gridSize: {x: 2, y: 2}
 --- !u!4 &1909118489
 Transform:
   m_ObjectHideFlags: 0

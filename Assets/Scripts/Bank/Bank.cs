@@ -8,7 +8,7 @@ namespace Watchtower.BankSystem
 {
     public class Bank : MonoBehaviour
     {
-        private Scene _scene;
+        private int _scene;
         [SerializeField]
         private int _startBalance;
         [SerializeField]
@@ -20,13 +20,17 @@ namespace Watchtower.BankSystem
 
         private void Awake()
         {
-            _currentBalance = _startBalance;
-            _scene = SceneManager.GetActiveScene();
+            _scene = SceneManager.GetActiveScene().buildIndex;
 
             if (_updateGoldText == null)
             {
                 Debug.LogError("GoldText is NULL.");
             }
+        }
+
+        private void Start()
+        {
+            _currentBalance = _startBalance;
             _updateGoldText.UpdateText(_currentBalance);
         }
 
@@ -52,7 +56,7 @@ namespace Watchtower.BankSystem
 
         private void ReloadScene()
         {
-            SceneManager.LoadScene(_scene.buildIndex);
+            SceneManager.LoadScene(_scene);
         }
     }
 }
