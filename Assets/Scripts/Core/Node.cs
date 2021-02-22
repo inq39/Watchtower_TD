@@ -9,7 +9,7 @@ namespace Watchtower.Core
         public Vector2Int _node;
         public bool _isWalkable;
         public bool _isExplored;
-        public Node _neigbhor;
+        public bool _isPath;
 
         public Node(Vector2Int node, bool isWalkable)
         {

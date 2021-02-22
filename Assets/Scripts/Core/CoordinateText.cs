@@ -13,19 +13,19 @@ namespace Watchtower.Core
         private TextMeshPro _coordinateLabel;
         private Vector2Int _coordinate = new Vector2Int();
         private string _coordinateText;
-        private Waypoint _waypoint;
         private bool _isLabelEnable = true;
-        [SerializeField]
-        private Color _isPlacableColor;
-        [SerializeField]
-        private Color _isNotPlacableColor;
+        private Color _isPlacableColor = Color.white;
+        private Color _isNotPlacableColor = Color.grey;
+        private Color _isExploredColor = Color.yellow;
+        private Color _isPathColor = new Color(1f, 0.5f, 0f);
+        private GridManager _gridManager;
 
-       
+
         void Awake()
         {
+            _gridManager = FindObjectOfType<GridManager>();
             _coordinateLabel = GetComponentInChildren<TextMeshPro>();
             UpdateCoordinateText();
-            _waypoint = GetComponentInParent<Waypoint>();
         }
 
      
@@ -42,8 +42,37 @@ namespace Watchtower.Core
 
         private void UpdateCoordinateTextColor()
         {
-            _coordinateLabel.color = _waypoint.IsPlaceable ? _isPlacableColor : _isNotPlacableColor;
+            if (_gridManager == null) 
+            {
+                Debug.LogError("GridManager is null.");
+                return; 
+            }
+
+            Node node = _gridManager.GetNode(_coordinate);
+            if (node == null)
+            {
+                //Debug.LogError("Node is null.");
+                return;
+            }
+
+            if (!node._isWalkable)
+            {
+                _coordinateLabel.color = _isNotPlacableColor;
+            }
+            else if (node._isPath)
+            {
+                _coordinateLabel.color = _isPathColor;
+            }
+            else if (node._isExplored)
+            {
+                _coordinateLabel.color = _isExploredColor;
+            }
+            else
+            {
+                _coordinateLabel.color = _isPlacableColor;
+            }
         }
+
         private void ToggleCoordinateLabel()
         {
             if (Input.GetKeyDown(KeyCode.C))
