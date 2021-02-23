@@ -17,7 +17,7 @@ namespace Watchtower.Core
         private Color _isPlacableColor = Color.white;
         private Color _isNotPlacableColor = Color.grey;
         private Color _isExploredColor = Color.yellow;
-        private Color _isPathColor = new Color(1f, 0.5f, 0f);
+        private Color _isPathColor = Color.blue;
         private GridManager _gridManager;
 
 

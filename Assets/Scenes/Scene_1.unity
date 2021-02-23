@@ -1892,7 +1892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf852f11eb778b348b4cd65649da5067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridSize: {x: 2, y: 2}
+  _gridSize: {x: 5, y: 4}
 --- !u!4 &1909118489
 Transform:
   m_ObjectHideFlags: 0
@@ -2142,6 +2142,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1181294899, guid: 5fc9fb6273c94a3448cd337e88a6dd3a, type: 3}
+      propertyPath: _startCoordinate.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181294899, guid: 5fc9fb6273c94a3448cd337e88a6dd3a, type: 3}
+      propertyPath: _startCoordinate.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181294899, guid: 5fc9fb6273c94a3448cd337e88a6dd3a, type: 3}
+      propertyPath: _destinationCoordinate.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181294899, guid: 5fc9fb6273c94a3448cd337e88a6dd3a, type: 3}
+      propertyPath: _destinationCoordinate.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181294899, guid: 5fc9fb6273c94a3448cd337e88a6dd3a, type: 3}
+      propertyPath: _currentSearchNode._node.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181294899, guid: 5fc9fb6273c94a3448cd337e88a6dd3a, type: 3}
+      propertyPath: _currentSearchNode._node.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8757345063648165137, guid: 5fc9fb6273c94a3448cd337e88a6dd3a, type: 3}
       propertyPath: m_Name
       value: Object_Pool

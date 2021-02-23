@@ -8,10 +8,19 @@ namespace Watchtower.Core
     public class PathFinder : MonoBehaviour
     {
         [SerializeField]
+        private Vector2Int _startCoordinate;
+        [SerializeField]
+        private Vector2Int _destinationCoordinate;
+
+        private Node _startNode;
+        private Node _destinationNode;
         private Node _currentSearchNode;
         private Vector2Int[] _exploreDirections = new Vector2Int[] { Vector2Int.right, Vector2Int.left, Vector2Int.up, Vector2Int.down};
         private GridManager _gridManager;
-        private Dictionary<Vector2Int, Node> _grid;
+
+        private Dictionary<Vector2Int, Node> _grid = new Dictionary<Vector2Int, Node>();
+        private Dictionary<Vector2Int, Node> _reached = new Dictionary<Vector2Int, Node>();
+        private Queue<Node> _frontier = new Queue<Node>();
 
         private void Awake()
         {
@@ -20,11 +29,17 @@ namespace Watchtower.Core
             {
                 _grid = _gridManager.Grid;
             }
+
+            
         }
 
         private void Start()
         {
-            ExploreNeighbors();
+            _startNode = _gridManager.Grid[_startCoordinate];
+            _destinationNode = _gridManager.Grid[_destinationCoordinate];
+
+            Searching();
+            BuildPath();
         }
 
         private void ExploreNeighbors()
@@ -37,13 +52,55 @@ namespace Watchtower.Core
                 if (_grid.ContainsKey(searchVector))
                 {
                     neighbors.Add(_grid[searchVector]);
-
-                    //remove - only for testing
-                    _grid[searchVector]._isExplored = true;
-                    _grid[_currentSearchNode._node]._isPath = true;
                 }
             }
 
+            foreach (Node neighbor in neighbors)
+            {
+                if (!_reached.ContainsKey(neighbor._node) && neighbor._isWalkable)
+                {
+                    neighbor._connectedTo = _currentSearchNode;
+                    _reached.Add(neighbor._node, neighbor);
+                    _frontier.Enqueue(neighbor);
+                }
+            }
+
+        }
+
+        private void Searching()
+        {
+            bool isRunning = true;
+
+            _frontier.Enqueue(_startNode);
+            _reached.Add(_startCoordinate, _startNode);
+
+            while(_frontier.Count > 0 && isRunning)
+            {
+                _currentSearchNode = _frontier.Dequeue();
+                _currentSearchNode._isExplored = true;
+                ExploreNeighbors();
+                if (_currentSearchNode._node == _destinationCoordinate)
+                {
+                    isRunning = false;
+                }
+            }
+        }
+
+        private List<Node> BuildPath()
+        {
+            List<Node> path = new List<Node>();
+            Node currentNode = _destinationNode;
+            path.Add(currentNode);
+            currentNode._isPath = true;
+
+            while (currentNode._connectedTo != null)
+            {
+                currentNode = currentNode._connectedTo;
+                path.Add(currentNode);
+                currentNode._isPath = true;
+            }
+            path.Reverse();
+            return path;
         }
     }
 }
